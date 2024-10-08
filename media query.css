@@ -1,7 +1,22 @@
 @charset "UTF-8";
 
-@media screen and (min-width: 300px) and (max-width: 400px) {
+@media screen and (min-width: 307px) and (max-width: 402px) {
     body {
        
+    }
+    h1 {
+        font-size: 22px;
+    }
+    div#div1 {
+        font-size: 22px;
+    }
+    input {
+        font-size: 11px;
+    }
+    #totalGastos {
+        font-size: 30px;
+    }
+    h3 {
+        font-size: 26px;
     }
 }
