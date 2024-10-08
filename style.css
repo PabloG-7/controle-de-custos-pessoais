@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-family:monospace;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 28px;
+    padding: 5vw;
+    text-shadow: 1px 1px 1px;
+}
+
+div#div1 {
+    background-color: rgba(167, 167, 167, 0.712);
+    padding: 30px;
+    font-size: 23px;
+    text-shadow: 1px 1px 1px;
+}
+
+input{
+    padding: 5px;
+    border: 20px;
+    
+}
+button{
+    padding: 5px;
+    margin-top: 20px;
+    margin-left: 45px;
+}
+button:hover {
+    color: green;
+}
+
+h3 {
+    text-shadow: 1px 1px 1px;
+    font-size: 30px;
+}
+
+#totalGastos {
+    font-size: 40px;
+    text-shadow: 1px 1px 1px;
+    color: rgb(0, 255, 34);
+}
+h2 {
+    font-size: 30px;
+    text-shadow: 1px 1px 1px;
+}
+#listaGastos {
+    color: red;
+    font-size: 20px;
+    
+}
+#categoria{
+margin-right: 45px;
+}
