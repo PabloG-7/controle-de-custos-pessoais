@@ -27,6 +27,7 @@ div#div1 {
 input{
     padding: 5px;
     border: 20px;
+    touch-action: manipulation;
 }
 
 button{
