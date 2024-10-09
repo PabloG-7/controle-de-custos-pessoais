@@ -4,7 +4,7 @@
     margin: 0px;
     padding: 0px;
     text-align: center;
-    font-family:monospace;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
 
@@ -24,7 +24,9 @@ div#div1 {
 input{
     padding: 5px;
     border: 20px;
-    
+}
+textarea {
+    font-size: 16px;
 }
 button{
     padding: 5px;
