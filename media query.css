@@ -1,9 +1,6 @@
 @charset "UTF-8";
 
 @media screen and (min-width: 301px) and (max-width: 480px) {
-    body {
-       
-    }
     h1 {
         font-size: 17px;
     }
