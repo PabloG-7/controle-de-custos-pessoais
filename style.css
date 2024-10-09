@@ -7,27 +7,25 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
-html {
-    -webkit-text-size-adjust: 100%;
-}
 
 h1 {
     font-size: 28px;
     padding: 4vw;
-    text-shadow: 1px 1px 1px;
+    text-shadow: 0px 1px 0px;
 }
 
 div#div1 {
-    background-color: rgba(167, 167, 167, 0.712);
+    background-color: rgba(0, 207, 0, 0.877);
     padding: 30px;
     font-size: 23px;
-    text-shadow: 1px 1px 1px;
+    text-shadow: 0px 1px 0px;
 }
 
 input{
     padding: 5px;
     border: 20px;
     touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
 }
 
 button{
@@ -40,7 +38,7 @@ button:hover {
 }
 
 h3 {
-    text-shadow: 1px 1px 1px;
+    text-shadow: 0px 1px 0px;
     font-size: 30px;
 }
 
@@ -48,16 +46,17 @@ h3 {
     font-size: 40px;
     text-shadow: 1px 1px 1px;
     color: rgb(0, 255, 34);
+    font-family: monospace;
 }
 h2 {
     font-size: 30px;
-    text-shadow: 1px 1px 1px;
+    text-shadow: 0px 1px 0px;
 }
 #listaGastos {
     color: red;
     font-size: 20px;
-    
+    font-family: monospace;
 }
 #categoria{
-margin-right: 45px;
+margin-right: 55px;
 }
