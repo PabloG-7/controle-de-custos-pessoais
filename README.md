@@ -17,4 +17,4 @@ Este é um projeto simples de educação financeira que permite calcular e acomp
 ## Como Usar
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/pablog-7/Gastos-mensais.git
+   git clone https://github.com/PabloG-7/Gastos-Mensais.git
