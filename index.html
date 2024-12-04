@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="media query.css">
 </head>
 <body>
-  <h1>Calculadora de Gastos por Mês</h1>
+  <h1>Controle de Custos Pessoais</h1>
   <form onsubmit="adicionarGasto(); return false;">
     <label for="mes">Mês:</label>
     <select id="mes">
@@ -38,7 +38,11 @@
   <div id="resumo-gastos">
     <h2><span style="color: #3e006b;;">Resumo dos Gastos</span></h2>
     <ul id="lista-gastos"></ul> <hr>
-    <span style="font-size: 22px;">Total Geral:</span> <span style="color: green;" id="total-geral">R$ 0.00</span>
+    <span style="font-size: 22px;">Total Geral:</span> <span style="color: green;" id="total-geral">R$ 0.00</span> 
+
+    <br>
+
+    <button id="limpar-tudo" onclick="apagarTodosGastos()">Apagar Todos os Gastos</button>
   </div>
 
 

@@ -45,9 +45,12 @@ function atualizarListaGastos() {
 
     // Adiciona os gastos individuais do mês
     const ulSubGastos = document.createElement("ul");
-    gastosPorMes[mes].forEach((gasto) => {
+    gastosPorMes[mes].forEach((gasto, index) => {
       const subItem = document.createElement("li");
-      subItem.textContent = `${gasto.categoria}: R$ ${gasto.valor.toFixed(2)}`;
+      subItem.innerHTML = `
+        ${gasto.categoria}: R$ ${gasto.valor.toFixed(2)} 
+        <button onclick="apagarGasto('${mes}', ${index})" class="delete-btn">Apagar</button>
+      `;
       ulSubGastos.appendChild(subItem);
     });
 
@@ -62,4 +65,29 @@ function atualizarTotalGeral() {
     .flat()
     .reduce((sum, gasto) => sum + gasto.valor, 0);
   totalGeralElement.textContent = `R$ ${total.toFixed(2)}`;
+}
+
+// Função para apagar um gasto específico
+function apagarGasto(mes, index) {
+  gastosPorMes[mes].splice(index, 1); // Remove o gasto pelo índice
+
+  // Se não houver mais gastos no mês, remove o mês
+  if (gastosPorMes[mes].length === 0) {
+    delete gastosPorMes[mes];
+  }
+
+  // Atualiza a interface
+  atualizarListaGastos();
+  atualizarTotalGeral();
+}
+
+// Função para apagar todos os gastos
+function apagarTodosGastos() {
+  for (const mes in gastosPorMes) {
+    delete gastosPorMes[mes];
+  }
+
+  // Atualiza a interface
+  atualizarListaGastos();
+  atualizarTotalGeral();
 }
