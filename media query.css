@@ -1,19 +1,30 @@
 @charset "UTF-8";
 
-@media screen and (min-width: 301px) and (max-width: 480px) {
+@media screen and (min-width: 325px) and (max-width: 449px) {
     h1 {
-        font-size: 17px;
+        font-size: 10vw;
     }
-    div#div1 {
-        font-size: 15px;
+    form {
+        width: 92%;
+        margin-left: -2vw;
     }
-    input {
-        font-size: 8px;
+    #resumo-gastos {
+        width: 92%;
+        margin-left: -2vw;
     }
-    #totalGastos {
-        font-size: 30px;
+}
+
+
+@media screen and (min-width: 450px) and (max-width: 650px) {
+    h1 {
+        font-size: 5.9vw;
     }
-    h3 {
-        font-size: 20px;
+    form {
+        width: 70vw;
+        margin-left: 8vw;
+    }
+    #resumo-gastos {
+        width: 70vw;
+        margin-left: 8vw;
     }
 }

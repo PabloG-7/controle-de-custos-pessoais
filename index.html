@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educação Financeira</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="media query.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Gastos Mensais</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="media query.css">
 </head>
-<body style="height: 0px;">
-    <h1>Calculadora de Gastos Mensais</h1>
-
-    <div id="div1">
-        <label for="categoria">Categoria:</label>
-        <input type="text" id="categoria" placeholder="Ex: Alimentação">
-<br><br>
-
-    <label for="valor">Valor:</label>
-    <input type="number" id="valor" placeholder="Ex: 5.99"> 
+<body>
+  <h1>Calculadora de Gastos por Mês</h1>
+  <form onsubmit="adicionarGasto(); return false;">
+    <label for="mes">Mês:</label>
+    <select id="mes">
+      <option value="Janeiro">Janeiro</option>
+      <option value="Fevereiro">Fevereiro</option>
+      <option value="Março">Março</option>
+      <option value="Abril">Abril</option>
+      <option value="Maio">Maio</option>
+      <option value="Junho">Junho</option>
+      <option value="Julho">Julho</option>
+      <option value="Agosto">Agosto</option>
+      <option value="Setembro">Setembro</option>
+      <option value="Outubro">Outubro</option>
+      <option value="Novembro">Novembro</option>
+      <option value="Dezembro">Dezembro</option>
+    </select>
 <br>
-    <button onclick="adicionarGasto()">Adicionar Gasto</button> </div>
+    <label for="categoria">Categoria:</label>
+    <input type="text" id="categoria" placeholder="Ex: Alimentação">
+<br>
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" step="0.01" placeholder="Ex: 5.99">
 
-    <h2>Gastos:</h2>
-    <ul id="listaGastos"></ul>
-<br><br>
-    <h3>Total de Gastos: R$ <span id="totalGastos">0.00</span></h3>
+    <button type="submit">Adicionar Gasto</button>
+  </form>
 
-    <meta name="viewport" content="width=device=width, initial-scale=1, maximum=scale=1, user=scalable=no">
+  <div id="resumo-gastos">
+    <h2><span style="color: #3e006b;;">Resumo dos Gastos</span></h2>
+    <ul id="lista-gastos"></ul> <hr>
+    <span style="font-size: 22px;">Total Geral:</span> <span style="color: green;" id="total-geral">R$ 0.00</span>
+  </div>
 
-    <script src="index.js"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,99 @@
+@font-face {
+  font-family: 'font1';
+  src: url(fontes/Nexa-Heavy.ttf);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d9d9d9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: -3px;
+    color: #3e006b;
+    font-size: 40px;
+    font-family: font1;
+
+    transition: all 0.5s ease-in-out;
+
+  }
+  
+  form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    margin-bottom: 20px;
+    margin-left: 20vw;
+    width: 55vw;
+  }
+ 
+  
+  form label, form input, form select, form button {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-family: font1;
+    height: 35px;
+    border-radius: 10px 20px;
+    text-indent: 10px;
+    transition: all 0.7s ease-in-out;
+  }
+
+  #mes:hover {
+    transform: translateY(8px);
+  }
+  #mes:focus {
+    background-color: #d9d9d9;
+    color: #3e006b;
+    transition: color 0.3s, background-color 0.3;
+  
+  }
+  
+  form button {
+    background-color: #3e006b;
+    color: white;
+    border: none;
+    padding: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 10px 20px;
+    height: 40px;
+    font-size: 20px;
+    font-family:font1;
+    width: 101%;
+    
+  }
+  
+  form button:hover {
+    background-color: #3e006bba;
+  }
+  
+  #resumo-gastos {
+    background: #fff;
+    padding: 20px;
+    border-radius: 40px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 55vw;
+    margin-left: 20vw;
+    font-family: font1;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    font-size: 22px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
