@@ -8,6 +8,9 @@
         width: 92%;
         margin-left: -2vw;
     }
+    form input {
+        width: 95%;
+    }
     #resumo-gastos {
         width: 97.5%;
         margin-left: -2vw;
