@@ -41,7 +41,7 @@ function atualizarListaGastos() {
 
     // Cria o elemento da lista do mês
     const li = document.createElement("li");
-    li.innerHTML = `<strong style="color: #3e006b;">${mes}</strong>: Total R$ ${totalDoMes.toFixed(2)}`;
+    li.innerHTML = `<strong style="color: green;">${mes}</strong>: Total R$ ${totalDoMes.toFixed(2)}`;
 
     // Adiciona os gastos individuais do mês
     const ulSubGastos = document.createElement("ul");

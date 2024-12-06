@@ -48,6 +48,7 @@ body {
     border-radius: 10px 20px;
     text-indent: 10px;
     transition: all 0.7s ease-in-out;
+    cursor: pointer;
   }
 
   #mes:hover {
@@ -72,8 +73,10 @@ body {
     font-size: 20px;
     font-family:font1;
     text-shadow: 1px 2px 1px #000000;
-    width: 101%;
-    
+    width: 101%; 
+  }
+  form button:hover {
+    transform: translateY(8px);
   }
   
   form button:hover {
@@ -115,4 +118,5 @@ body {
     box-shadow: 0px 0px 1px 1px #3e006b;
     font-family: font1;
     color: black;
+    cursor: pointer;
   }
