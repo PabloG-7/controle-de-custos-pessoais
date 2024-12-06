@@ -120,3 +120,7 @@ body {
     color: black;
     cursor: pointer;
   }
+
+  #limpar-tudo:hover {
+    background-color:#3e006b4f;
+  }
