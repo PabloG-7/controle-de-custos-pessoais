@@ -22,6 +22,10 @@ function adicionarGasto() {
   // Adiciona o gasto ao mês
   gastosPorMes[mes].push({ categoria, valor });
 
+  // Reproduz o som de dinheiro
+  const som = document.getElementById("somDinheiro");
+  som.play();
+
   // Atualiza a interface
   atualizarListaGastos();
   atualizarTotalGeral();
