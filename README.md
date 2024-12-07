@@ -1,22 +1,21 @@
-# Calculadora de Gastos Mensais 💸
+# Controle de Custos Pessoais  
 
-## Descrição
-Este é um projeto simples de educação financeira que permite calcular e acompanhar todos os seus gastos mensais. A calculadora ajuda a visualizar quanto você está gastando em diferentes categorias, como alimentação, transporte, lazer, etc., e oferece uma visão geral dos seus gastos ao final do mês.
+Este é um projeto simples de controle de custos pessoais, criado como uma forma de aprimorar minhas habilidades em desenvolvimento front-end e manipulação de DOM com JavaScript.  
 
-## Funcionalidades
-- Adicionar e remover gastos em diferentes categorias.
-- Visualizar o total de gastos mensais.
-- Interface simples e intuitiva.
-- Desenvolvido com **HTML**, **CSS** e **JavaScript**.
+## 💡 Funcionalidades  
+- Adicionar despesas por mês e categoria.  
+- Visualizar um resumo com os totais mensais e gerais.  
+- Remover despesas específicas ou apagar todos os gastos de uma vez.  
+- Recurso sonoro: ao adicionar um gasto, um áudio simula o som de moedas para uma experiência mais imersiva.  
 
-## Tecnologias Utilizadas
-- **HTML**: Estrutura da página.
-- **CSS**: Estilização e layout.
-- **JavaScript**: Lógica de cálculo e interação com a interface.
+## 🛠 Tecnologias Utilizadas  
+- HTML5  
+- CSS3  
+- JavaScript  
 
-- ## Acesse o Projeto
+- ## 🌐 Acesse o Projeto
 
-[Calculadora Pablo - Clique aqui para acessar](https://pablog-7.github.io/Gastos-Mensais/)
+[Controle de Custos Pessoais - Clique aqui para acessar](https://pablog-7.github.io/Gastos-Mensais/)
 
 ## Como Usar
 1. Clone este repositório:
