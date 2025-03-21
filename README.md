@@ -15,7 +15,7 @@ Este é um projeto simples de controle de custos pessoais, criado como uma forma
 
 - ## 🌐 Acesse o Projeto
 
-[Controle de Custos Pessoais - Clique aqui para acessar](https://pablog-7.github.io/Gastos-Mensais/)
+[Controle de Custos Pessoais - Clique aqui para acessar](https://pablog-7.github.io/gastos-mensais/)
 
 ## Como Usar
 1. Clone este repositório:
