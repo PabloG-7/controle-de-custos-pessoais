@@ -5,49 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Controle de Custos Pessoais</title>
   <link rel="shortcut icon" href="img/apple-touch-icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="media query.css">
 </head>
 <body>
-  <h1>Controle de Custos Pessoais</h1>
-  <form onsubmit="adicionarGasto(); return false;">
-    <label for="mes">Mês:</label>
-    <select id="mes">
-      <option value="Janeiro">Janeiro</option>
-      <option value="Fevereiro">Fevereiro</option>
-      <option value="Março">Março</option>
-      <option value="Abril">Abril</option>
-      <option value="Maio">Maio</option>
-      <option value="Junho">Junho</option>
-      <option value="Julho">Julho</option>
-      <option value="Agosto">Agosto</option>
-      <option value="Setembro">Setembro</option>
-      <option value="Outubro">Outubro</option>
-      <option value="Novembro">Novembro</option>
-      <option value="Dezembro">Dezembro</option>
-    </select>
-<br>
-    <label for="categoria">Categoria:</label>
-    <input type="text" id="categoria" placeholder="Ex: Alimentação">
-<br>
-    <label for="valor">Valor:</label>
-    <input type="number" id="valor" step="0.01" placeholder="Ex: 5.99">
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-wallet"></i> Controle de Custos Pessoais</h1>
+      <p class="subtitle">Acompanhe seus gastos mensais</p>
+    </header>
 
-    <button type="submit">Adicionar Gasto</button>
-    <audio id="somDinheiro" src="audio/audio-moeda.mp4">sound/money</audio>
-  </form>
+    <main>
+      <section class="card form-section">
+        <form id="gasto-form">
+          <div class="form-group">
+            <label for="mes"><i class="fas fa-calendar-alt"></i> Mês:</label>
+            <select id="mes" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="Janeiro">Janeiro</option>
+              <option value="Fevereiro">Fevereiro</option>
+              <option value="Março">Março</option>
+              <option value="Abril">Abril</option>
+              <option value="Maio">Maio</option>
+              <option value="Junho">Junho</option>
+              <option value="Julho">Julho</option>
+              <option value="Agosto">Agosto</option>
+              <option value="Setembro">Setembro</option>
+              <option value="Outubro">Outubro</option>
+              <option value="Novembro">Novembro</option>
+              <option value="Dezembro">Dezembro</option>
+            </select>
+          </div>
 
-  <div id="resumo-gastos">
-    <h2><span style="color: #3e006b;">Resumo dos Gastos</span></h2>
-    <ul id="lista-gastos"></ul> <hr>
-    <span style="font-size: 22px;">Total Geral:</span> <span style="color: green;" id="total-geral">R$ 0.00</span> 
+          <div class="form-group">
+            <label for="categoria"><i class="fas fa-tags"></i> Categoria:</label>
+            <select id="categoria" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Moradia">Moradia</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
 
-    <br>
+          <div class="form-group">
+            <label for="valor"><i class="fas fa-money-bill-wave"></i> Valor (R$):</label>
+            <input type="number" id="valor" step="0.01" min="0.01" placeholder="Ex: 5.99" required>
+          </div>
 
-    <button id="limpar-tudo" onclick="apagarTodosGastos()">Apagar Todos os Gastos 🗑</button>
+          <div class="form-group">
+            <label for="descricao"><i class="fas fa-align-left"></i> Descrição (opcional):</label>
+            <input type="text" id="descricao" placeholder="Ex: Supermercado">
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <i class="fas fa-plus-circle"></i> Adicionar Gasto
+          </button>
+        </form>
+      </section>
+
+      <section class="card summary-section">
+        <h2><i class="fas fa-chart-pie"></i> Resumo dos Gastos</h2>
+        
+        <div class="summary-controls">
+          <div class="filter-group">
+            <label for="filter-month"><i class="fas fa-filter"></i> Filtrar:</label>
+            <select id="filter-month">
+              <option value="todos">Todos os meses</option>
+              <option value="Janeiro">Janeiro</option>
+              <option value="Fevereiro">Fevereiro</option>
+              <option value="Março">Março</option>
+              <option value="Abril">Abril</option>
+              <option value="Maio">Maio</option>
+              <option value="Junho">Junho</option>
+              <option value="Julho">Julho</option>
+              <option value="Agosto">Agosto</option>
+              <option value="Setembro">Setembro</option>
+              <option value="Outubro">Outubro</option>
+              <option value="Novembro">Novembro</option>
+              <option value="Dezembro">Dezembro</option>
+            </select>
+          </div>
+          <button id="export-btn" class="btn-secondary">
+            <i class="fas fa-file-export"></i> Exportar
+          </button>
+        </div>
+
+        <div class="stats-container">
+          <div class="stat-card total">
+            <h3>Total Geral</h3>
+            <p id="total-geral">R$ 0,00</p>
+          </div>
+          <div class="stat-card monthly">
+            <h3>Mês Atual</h3>
+            <p id="monthly-total">R$ 0,00</p>
+          </div>
+        </div>
+
+        <div id="chart-container">
+          <!-- Gráfico será inserido aqui dinamicamente -->
+          <p class="no-chart-data">Adicione gastos para ver o gráfico</p>
+        </div>
+
+        <div class="expenses-list">
+          <ul id="lista-gastos">
+            <li class="no-expenses">Nenhum gasto registrado ainda.</li>
+          </ul>
+        </div>
+
+        <div class="actions">
+          <button id="limpar-tudo" class="btn-danger">
+            <i class="fas fa-trash-alt"></i> Apagar Todos os Gastos
+          </button>
+        </div>
+      </section>
+    </main>
   </div>
 
-
+  <audio id="somDinheiro" src="audio/audio-moeda.mp4"></audio>
   <script src="script.js"></script>
 </body>
 </html>

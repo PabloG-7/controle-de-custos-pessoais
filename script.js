@@ -1,97 +1,146 @@
-// Armazena os gastos organizados por mês
-const gastosPorMes = {};
-const totalGeralElement = document.getElementById("total-geral");
-const listaGastosElement = document.getElementById("lista-gastos");
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('gasto-form');
+  const listaGastos = document.getElementById('lista-gastos');
+  const filterMonth = document.getElementById('filter-month');
+  const totalGeral = document.getElementById('total-geral');
+  const monthlyTotal = document.getElementById('monthly-total');
+  const limparTudoBtn = document.getElementById('limpar-tudo');
+  const exportBtn = document.getElementById('export-btn');
+  const somDinheiro = document.getElementById('somDinheiro');
 
-// Função para adicionar um gasto
-function adicionarGasto() {
-  const mes = document.getElementById("mes").value;
-  const categoria = document.getElementById("categoria").value.trim();
-  const valor = parseFloat(document.getElementById("valor").value);
+  let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
 
-  if (!mes || !categoria || isNaN(valor)) {
-    alert("Por favor, preencha todos os campos corretamente.");
-    return;
-  }
+  // Função para formatar valor em reais
+  const formatarMoeda = (valor) => {
+      return `R$ ${valor.toFixed(2).replace('.', ',')}`;
+  };
 
-  // Verifica se já existe um array para o mês, se não, cria um
-  if (!gastosPorMes[mes]) {
-    gastosPorMes[mes] = [];
-  }
+  // Função para atualizar os totais
+  const atualizarTotais = () => {
+      const total = gastos.reduce((sum, gasto) => sum + gasto.valor, 0);
+      totalGeral.textContent = formatarMoeda(total);
 
-  // Adiciona o gasto ao mês
-  gastosPorMes[mes].push({ categoria, valor });
+      const mesSelecionado = filterMonth.value;
+      const gastosFiltrados = mesSelecionado === 'todos' 
+          ? gastos 
+          : gastos.filter(g => g.mes === mesSelecionado);
+      const totalMensal = gastosFiltrados.reduce((sum, gasto) => sum + gasto.valor, 0);
+      monthlyTotal.textContent = formatarMoeda(totalMensal);
+  };
 
-  // Reproduz o som de dinheiro
-  const som = document.getElementById("somDinheiro");
-  som.play();
+  // Função para renderizar a lista de gastos
+  const renderizarGastos = () => {
+      listaGastos.innerHTML = '';
+      const mesSelecionado = filterMonth.value;
+      const gastosFiltrados = mesSelecionado === 'todos' 
+          ? gastos 
+          : gastos.filter(g => g.mes === mesSelecionado);
 
-  // Atualiza a interface
-  atualizarListaGastos();
-  atualizarTotalGeral();
+      if (gastosFiltrados.length === 0) {
+          listaGastos.innerHTML = '<li class="no-expenses">Nenhum gasto registrado ainda.</li>';
+          return;
+      }
 
-  // Limpa os campos do formulário
-  document.getElementById("categoria").value = "";
-  document.getElementById("valor").value = "";
-}
+      gastosFiltrados.forEach((gasto, index) => {
+          const li = document.createElement('li');
+          li.className = 'expense-item';
+          li.innerHTML = `
+              <div class="expense-category">
+                  <i class="fas fa-${getIconeCategoria(gasto.categoria)}"></i>
+              </div>
+              <div class="expense-details">
+                  <span class="expense-description">${gasto.descricao || gasto.categoria}</span>
+                  <span class="expense-date">${gasto.mes}</span>
+              </div>
+              <span class="expense-value">${formatarMoeda(gasto.valor)}</span>
+              <button class="delete-btn" data-index="${index}">
+                  <i class="fas fa-trash"></i>
+              </button>
+          `;
+          listaGastos.appendChild(li);
+      });
 
-// Função para atualizar a lista de gastos por mês
-function atualizarListaGastos() {
-  listaGastosElement.innerHTML = ""; // Limpa a lista anterior
+      atualizarTotais();
+  };
 
-  for (const mes in gastosPorMes) {
-    // Calcula o total do mês
-    const totalDoMes = gastosPorMes[mes].reduce((sum, gasto) => sum + gasto.valor, 0);
+  // Função para obter ícone baseado na categoria
+  const getIconeCategoria = (categoria) => {
+      const icones = {
+          'Alimentação': 'utensils',
+          'Transporte': 'car',
+          'Lazer': 'gamepad',
+          'Moradia': 'home',
+          'Saúde': 'heartbeat',
+          'Outros': 'ellipsis-h'
+      };
+      return icones[categoria] || 'money-bill';
+  };
 
-    // Cria o elemento da lista do mês
-    const li = document.createElement("li");
-    li.innerHTML = `<strong style="color: green;">${mes}</strong>: Total R$ ${totalDoMes.toFixed(2)}`;
+  // Adicionar novo gasto
+  form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const novoGasto = {
+          mes: document.getElementById('mes').value,
+          categoria: document.getElementById('categoria').value,
+          valor: parseFloat(document.getElementById('valor').value),
+          descricao: document.getElementById('descricao').value
+      };
 
-    // Adiciona os gastos individuais do mês
-    const ulSubGastos = document.createElement("ul");
-    gastosPorMes[mes].forEach((gasto, index) => {
-      const subItem = document.createElement("li");
-      subItem.innerHTML = `
-        ${gasto.categoria}: R$ ${gasto.valor.toFixed(2)} 
-        <button onclick="apagarGasto('${mes}', ${index})" class="delete-btn">Apagar</button>
-      `;
-      ulSubGastos.appendChild(subItem);
-    });
+      gastos.push(novoGasto);
+      localStorage.setItem('gastos', JSON.stringify(gastos));
+      
+      somDinheiro.play().catch(err => console.log('Erro ao tocar som:', err));
+      form.reset();
+      renderizarGastos();
+  });
 
-    li.appendChild(ulSubGastos);
-    listaGastosElement.appendChild(li);
-  }
-}
+  // Filtrar por mês
+  filterMonth.addEventListener('change', renderizarGastos);
 
-// Função para atualizar o total geral
-function atualizarTotalGeral() {
-  const total = Object.values(gastosPorMes)
-    .flat()
-    .reduce((sum, gasto) => sum + gasto.valor, 0);
-  totalGeralElement.textContent = `R$ ${total.toFixed(2)}`;
-}
+  // Deletar gasto individual
+  listaGastos.addEventListener('click', (e) => {
+      if (e.target.closest('.delete-btn')) {
+          const index = parseInt(e.target.closest('.delete-btn').dataset.index);
+          gastos.splice(index, 1);
+          localStorage.setItem('gastos', JSON.stringify(gastos));
+          renderizarGastos();
+      }
+  });
 
-// Função para apagar um gasto específico
-function apagarGasto(mes, index) {
-  gastosPorMes[mes].splice(index, 1); // Remove o gasto pelo índice
+  // Limpar todos os gastos
+  limparTudoBtn.addEventListener('click', () => {
+      if (confirm('Tem certeza que deseja apagar todos os gastos?')) {
+          gastos = [];
+          localStorage.removeItem('gastos');
+          renderizarGastos();
+      }
+  });
 
-  // Se não houver mais gastos no mês, remove o mês
-  if (gastosPorMes[mes].length === 0) {
-    delete gastosPorMes[mes];
-  }
+  // Exportar dados
+  exportBtn.addEventListener('click', () => {
+      const dadosExport = gastos.map(g => ({
+          Mês: g.mes,
+          Categoria: g.categoria,
+          Valor: formatarMoeda(g.valor),
+          Descrição: g.descricao || '-'
+      }));
+      
+      const csv = [
+          ['Mês', 'Categoria', 'Valor', 'Descrição'],
+          ...dadosExport.map(g => [g.Mês, g.Categoria, g.Valor, g.Descrição])
+      ].map(row => row.join(',')).join('\n');
 
-  // Atualiza a interface
-  atualizarListaGastos();
-  atualizarTotalGeral();
-}
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'gastos.csv';
+      a.click();
+      window.URL.revokeObjectURL(url);
+  });
 
-// Função para apagar todos os gastos
-function apagarTodosGastos() {
-  for (const mes in gastosPorMes) {
-    delete gastosPorMes[mes];
-  }
-
-  // Atualiza a interface
-  atualizarListaGastos();
-  atualizarTotalGeral();
-}
+  // Inicialização
+  renderizarGastos();
+});
